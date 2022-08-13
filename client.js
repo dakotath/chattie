@@ -84,7 +84,8 @@ var chat = {
     chat.socket.send(JSON.stringify({
       name: chat.name,
       color: chat.color,
-      msg: msg
+      msg: msg,
+      cspace: cspace
     }));
     return false;
   },
@@ -98,11 +99,11 @@ var chat = {
     // (D2) CREATE NEW ROW
     let row = document.createElement("div");
     row.className = "chatRow";
-    if(cspace == 0)
+    if(msg.cspace == 0)
     {
         row.innerHTML = `<div class="chatName" style="background-color: #${msg["color"]};">${msg["name"]}</div> <div class="chatMsg">${msg["msg"]}</div><audio autoplay><source src="btn.wav"/></audio>`;
     }
-    if(cspace == 1)
+    if(msg.cspace == 1)
     {
         row.innerHTML = `<div class="chatName" style="background-color: ${msg["color"]};">${msg["name"]}</div> <div class="chatMsg">${msg["msg"]}</div><audio autoplay><source src="btn.wav"/></audio>`;
     }
