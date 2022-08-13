@@ -7,12 +7,12 @@ var chat = {
   emsg : null, // HTML CHAT MESSAGE
   ego : null, // HTML CHAT GO BUTTON
   init : () => {
-    let cspace = 0;
     // (A1) GET HTML ELEMENTS
     chat.ewrap = document.getElementById("chatShow");
     chat.emsg = document.getElementById("chatMsg");
     chat.ego = document.getElementById("chatGo");
     chat.color = genRanHex(6);
+    chat.cspace = 0;
     // (A2) USER'S NAME
     chat.name = prompt("What is your name?", "John");
     if (chat.name == null || chat.name=="") { chat.name = "Mysterious"; }
@@ -60,7 +60,7 @@ var chat = {
       msg = chat.emsg.value;
       if(msg == "/colorme")
 	{
-	    cspace = 0;
+	    chat.cspace = 0;
 	    chat.color = genRanHex(6);
     	    let row = document.createElement("div");
     	    row.className = "chatRow";
@@ -71,7 +71,7 @@ var chat = {
 	console.log(msg.search("/colorme "));
       if(msg.search("/colorme ") == 0)
 	{
-	    cspace = 1;
+	    chat.cspace = 1;
 	    chat.color = msg.replace("/colorme ", "");
     	    let row = document.createElement("div");
     	    row.className = "chatRow";
@@ -85,7 +85,7 @@ var chat = {
       name: chat.name,
       color: chat.color,
       msg: msg,
-      cspace: cspace
+      cspace: chat.cspace
     }));
     return false;
   },
