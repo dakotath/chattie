@@ -6,6 +6,8 @@ var chat = {
   ewrap : null, // HTML CHAT HISTORY
   emsg : null, // HTML CHAT MESSAGE
   ego : null, // HTML CHAT GO BUTTON
+  color : null,
+  cspace: 0,
   init : () => {
     // (A1) GET HTML ELEMENTS
     chat.ewrap = document.getElementById("chatShow");
