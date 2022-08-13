@@ -7,6 +7,7 @@ var chat = {
   emsg : null, // HTML CHAT MESSAGE
   ego : null, // HTML CHAT GO BUTTON
   init : () => {
+    var cspace = 0;
     // (A1) GET HTML ELEMENTS
     chat.ewrap = document.getElementById("chatShow");
     chat.emsg = document.getElementById("chatMsg");
@@ -59,6 +60,7 @@ var chat = {
       msg = chat.emsg.value;
       if(msg == "/colorme")
 	{
+	    cspace = 0;
 	    chat.color = genRanHex(6);
     	    let row = document.createElement("div");
     	    row.className = "chatRow";
@@ -69,6 +71,7 @@ var chat = {
 	console.log(msg.search("/colorme "));
       if(msg.search("/colorme ") == 0)
 	{
+	    cspace = 1;
 	    chat.color = msg.replace("/colorme ", "");
     	    let row = document.createElement("div");
     	    row.className = "chatRow";
@@ -95,7 +98,14 @@ var chat = {
     // (D2) CREATE NEW ROW
     let row = document.createElement("div");
     row.className = "chatRow";
-    row.innerHTML = `<div class="chatName" style="background-color: #${msg["color"]};">${msg["name"]}</div> <div class="chatMsg">${msg["msg"]}</div><audio autoplay><source src="btn.wav"/></audio>`;
+    if(cspace == 0)
+    {
+        row.innerHTML = `<div class="chatName" style="background-color: #${msg["color"]};">${msg["name"]}</div> <div class="chatMsg">${msg["msg"]}</div><audio autoplay><source src="btn.wav"/></audio>`;
+    }
+    if(cspace == 1)
+    {
+        row.innerHTML = `<div class="chatName" style="background-color: ${msg["color"]};">${msg["name"]}</div> <div class="chatMsg">${msg["msg"]}</div><audio autoplay><source src="btn.wav"/></audio>`;
+    }
     chat.ewrap.appendChild(row);
 
     // AUTO SCROLL TO BOTTOM MAY NOT BE THE BEST...
