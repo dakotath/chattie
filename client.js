@@ -1,4 +1,5 @@
 const genRanHex = size => [...Array(size)].map(() => Math.floor(Math.random() * 16).toString(16)).join('');
+var cspace = 0;
 var chat = {
   // (A) INIT CHAT
   name : null, // USER'S NAME
@@ -7,7 +8,6 @@ var chat = {
   emsg : null, // HTML CHAT MESSAGE
   ego : null, // HTML CHAT GO BUTTON
   init : () => {
-    var cspace = 0;
     // (A1) GET HTML ELEMENTS
     chat.ewrap = document.getElementById("chatShow");
     chat.emsg = document.getElementById("chatMsg");
